@@ -94,6 +94,8 @@ class _QRResultState extends State<QRResult> {
                                 children: [
                                   Container(
                                       padding: const EdgeInsets.all(10),
+                                      width: double.infinity,
+                                      height: 250,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: Colors.white,
@@ -129,7 +131,11 @@ class _QRResultState extends State<QRResult> {
                                                 Radius.circular(10),
                                               ),
                                               child: Image.file(
-                                                  File(widget.image!))),
+                                                File(widget.image!),
+                                                width: double.infinity,
+                                                fit: BoxFit.cover,
+                                                height: 180,
+                                              )),
                                         ],
                                       )),
                                   const SizedBox(

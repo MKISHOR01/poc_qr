@@ -224,6 +224,7 @@ class _ProductListingState extends State<ProductListing> {
                               style: const TextStyle(
                                   fontFamily: AppTheme.fontName,
                                   fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
                                   fontSize: 14,
                                   color: Color.fromARGB(255, 36, 91, 65),
                                   letterSpacing: 0.0)),
@@ -252,6 +253,7 @@ class _ProductListingState extends State<ProductListing> {
                                 style: const TextStyle(
                                     fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
                                     fontSize: 14,
                                     color: Colors.red,
                                     letterSpacing: 0.0)),
