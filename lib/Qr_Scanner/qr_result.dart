@@ -276,8 +276,10 @@ class _QRResultState extends State<QRResult> {
                                               : Container(),
                                           result.isNotEmpty
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(10),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 2.0,
+                                                      vertical: 5.0),
                                                   child: APIResponseTableView(
                                                     data: json.decode(result[0]
                                                             .outputString ??
