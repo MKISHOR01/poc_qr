@@ -40,13 +40,13 @@ Future<List<OCRResultModel>> imageOCRApiCall(
     if (response.data["data"] != null) {
       final List<OCRResultModel> dataList = [];
       OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
-      data.outputString = response.data.toString();
+      data.outputString = json.encode(response.data);
       dataList.add(data);
       return dataList;
     }
   }
 
-  return [OCRResultModel(outputString: response.data.toString())];
+  return [OCRResultModel(outputString: json.encode(response.data))];
 }
 
 Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
@@ -68,11 +68,11 @@ Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
     if (response.data["data"] != null) {
       final List<OCRResultModel> dataList = [];
       OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
-      data.outputString = response.data.toString();
+      data.outputString = json.encode(response.data);
       dataList.add(data);
       return dataList;
     }
   }
 
-  return [OCRResultModel(outputString: response.data.toString())];
+  return [OCRResultModel(outputString: json.encode(response.data))];
 }

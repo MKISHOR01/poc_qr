@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -29,7 +30,6 @@ class QRResult extends StatefulWidget {
 class _QRResultState extends State<QRResult> {
   String type = "";
   String reqValue = "";
-  String OutputString = "";
 
   Future<List<OCRResultModel>> apiCall() async {
     if (type == "image") {
@@ -276,7 +276,10 @@ class _QRResultState extends State<QRResult> {
                                                   padding:
                                                       const EdgeInsets.all(10),
                                                   child: Text(
-                                                      result[0].outputString!),
+                                                      getjsonObjecDisplay(result[
+                                                                  0]
+                                                              .outputString ??
+                                                          "")),
                                                 )
                                               : Container()
                                         ],
@@ -328,7 +331,8 @@ class _QRResultState extends State<QRResult> {
                                 result.isNotEmpty
                                     ? Padding(
                                         padding: const EdgeInsets.all(10),
-                                        child: Text(result[0].outputString!),
+                                        child: Text(getjsonObjecDisplay(
+                                            result[0].outputString ?? "")),
                                       )
                                     : Container()
                               ],
@@ -343,4 +347,11 @@ class _QRResultState extends State<QRResult> {
                   }
                 }));
   }
+}
+
+String getjsonObjecDisplay(String jsonString) {
+  Map<String, dynamic> user = json.decode(jsonString);
+  String prettyJson = JsonEncoder.withIndent('  ').convert(user);
+
+  return prettyJson;
 }
