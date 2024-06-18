@@ -12,7 +12,12 @@ Future<List<OCRResultModel>> imageOCRApiCall(
   String basicAuth =
       'Basic ${base64.encode(utf8.encode('$username:$password'))}';
 
-  final dio = Dio();
+  final dio = Dio(
+    BaseOptions(
+      connectTimeout: Duration(seconds: 30),
+      receiveTimeout: Duration(seconds: 30),
+    ),
+  );
   dio.options.contentType = "multipart/form-data";
   final multiPartFile = await MultipartFile.fromFile(
     filePath,
@@ -34,16 +39,23 @@ Future<List<OCRResultModel>> imageOCRApiCall(
   if (response.statusCode == 200) {
     if (response.data["data"] != null) {
       final List<OCRResultModel> dataList = [];
-      dataList.add(OCRResultModel.fromJson(response.data["data"]));
+      OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
+      data.outputString = response.data.toString();
+      dataList.add(data);
       return dataList;
     }
   }
 
-  return [];
+  return [OCRResultModel(outputString: response.data.toString())];
 }
 
 Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
-  final dio = Dio();
+  final dio = Dio(
+    BaseOptions(
+      connectTimeout: Duration(seconds: 30),
+      receiveTimeout: Duration(seconds: 30),
+    ),
+  );
 
   final response = await dio.get(
     "https://batchinfo.pharmconnect.com/batch/$batchCode",
@@ -55,10 +67,12 @@ Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
   if (response.statusCode == 200) {
     if (response.data["data"] != null) {
       final List<OCRResultModel> dataList = [];
-      dataList.add(OCRResultModel.fromJson(response.data["data"]));
+      OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
+      data.outputString = response.data.toString();
+      dataList.add(data);
       return dataList;
     }
   }
 
-  return [];
+  return [OCRResultModel(outputString: response.data.toString())];
 }

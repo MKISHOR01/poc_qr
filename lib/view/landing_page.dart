@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poc_qr/Qr_Scanner/BatchCodePage.dart';
 import 'package:poc_qr/Qr_Scanner/qr_result.dart';
 import 'package:poc_qr/bottom_bar_view.dart';
 import 'package:poc_qr/dialogs/Image_Picker_dialog.dart';
@@ -111,11 +112,7 @@ class _LandingPageScreenState extends State<LandingPageScreen>
                   return;
                 }
                 setState(() {
-                  tabBody = QRResult(
-                    closeScanner: () {},
-                    image: "",
-                    type: "image",
-                  );
+                  tabBody = BatchCodePageView();
                 });
               });
             }

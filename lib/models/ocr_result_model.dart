@@ -9,6 +9,7 @@ class OCRResultModel {
   final String? packsize;
   final String? headDivisionCode;
   final String? divisionCode;
+  String? outputString;
 
   OCRResultModel(
       {this.workspaceId,
@@ -20,6 +21,7 @@ class OCRResultModel {
       this.price,
       this.packsize,
       this.headDivisionCode,
+      this.outputString,
       this.divisionCode});
 
   factory OCRResultModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class OCRResultModel {
       packsize: json["packsize"].toString(),
       headDivisionCode: json["headDivisionCode"] ?? "",
       divisionCode: json["divisionCode)"] ?? "",
+      outputString: "Null",
     );
   }
 }

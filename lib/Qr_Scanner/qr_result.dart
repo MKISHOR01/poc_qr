@@ -29,6 +29,7 @@ class QRResult extends StatefulWidget {
 class _QRResultState extends State<QRResult> {
   String type = "";
   String reqValue = "";
+  String OutputString = "";
 
   Future<List<OCRResultModel>> apiCall() async {
     if (type == "image") {
@@ -93,7 +94,7 @@ class _QRResultState extends State<QRResult> {
                     (context, AsyncSnapshot<List<OCRResultModel>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     List<OCRResultModel> result = snapshot.requireData;
-                    return result.isNotEmpty
+                    return result[0].productName != null
                         ? SingleChildScrollView(
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -218,7 +219,7 @@ class _QRResultState extends State<QRResult> {
                                   ),
                                   Container(
                                       padding: const EdgeInsets.all(10),
-                                      height: 400,
+                                      // height: 400,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: Colors.white,
@@ -238,17 +239,46 @@ class _QRResultState extends State<QRResult> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const Text(
-                                            "Product Suggestions",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: AppTheme.darkText),
-                                          ),
+                                          result[0].productName != null
+                                              ? const Text(
+                                                  "Product Suggestions",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: AppTheme.darkText),
+                                                )
+                                              : Container(),
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          ProductListing(products: result),
+                                          result[0].productName != null
+                                              ? ProductListing(products: result)
+                                              : Container(),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          result.isNotEmpty
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  child: Text(
+                                                    "API Response",
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                )
+                                              : Container(),
+                                          result.isNotEmpty
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  child: Text(
+                                                      result[0].outputString!),
+                                                )
+                                              : Container()
                                         ],
                                       )),
                                 ],
@@ -283,7 +313,24 @@ class _QRResultState extends State<QRResult> {
                                       apiCall();
                                     });
                                   },
-                                )
+                                ),
+                                result.isNotEmpty
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text(
+                                          "API Response",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )
+                                    : Container(),
+                                result.isNotEmpty
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text(result[0].outputString!),
+                                      )
+                                    : Container()
                               ],
                             ),
                           );
