@@ -18,35 +18,54 @@ Future<List<OCRResultModel>> imageOCRApiCall(
       receiveTimeout: Duration(seconds: 30),
     ),
   );
-  dio.options.contentType = "multipart/form-data";
-  final multiPartFile = await MultipartFile.fromFile(
-    filePath,
-    filename: filePath.split('/').last,
-  );
-  FormData formData = FormData.fromMap({
-    "file": multiPartFile,
-  });
 
-  final response = await dio.post(
-    "https://scanner.pharmconnect.com/scan_product",
-    options: Options(headers: {
-      "Authorization": basicAuth,
-      "Content-Type": "multipart/form-data",
-    }),
-    data: formData,
-  );
+  try {
+    dio.options.contentType = "multipart/form-data";
+    final multiPartFile = await MultipartFile.fromFile(
+      filePath,
+      filename: filePath.split('/').last,
+    );
+    FormData formData = FormData.fromMap({
+      "file": multiPartFile,
+    });
 
-  if (response.statusCode == 200) {
-    if (response.data["data"] != null) {
-      final List<OCRResultModel> dataList = [];
-      OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
-      data.outputString = json.encode(response.data);
-      dataList.add(data);
-      return dataList;
+    final response = await dio.post(
+      "https://scanner.pharmconnect.com/scan_product",
+      options: Options(headers: {
+        "Authorization": basicAuth,
+        "Content-Type": "multipart/form-data",
+      }),
+      data: formData,
+    );
+
+    if (response.statusCode == 200) {
+      if (response.data["data"] != null) {
+        final List<OCRResultModel> dataList = [];
+        OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
+        data.outputString = json.encode(response.data);
+        dataList.add(data);
+        return dataList;
+      }
+    }
+
+    return [OCRResultModel(outputString: json.encode(response.data))];
+  } on DioError catch (e) {
+    if (e.type == DioErrorType.connectionTimeout) {
+      return [
+        OCRResultModel(
+            outputString: json.encode({"message": "Connection Timeout "}))
+      ];
+    } else if (e.type == DioErrorType.receiveTimeout) {
+      return [
+        OCRResultModel(
+            outputString: json.encode({"message": "Receive Timeout"}))
+      ];
+    } else {
+      return [
+        OCRResultModel(outputString: json.encode({"message": "Network Error"}))
+      ];
     }
   }
-
-  return [OCRResultModel(outputString: json.encode(response.data))];
 }
 
 Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
@@ -57,22 +76,40 @@ Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
     ),
   );
 
-  final response = await dio.get(
-    "https://batchinfo.pharmconnect.com/batch/$batchCode",
-    options: Options(headers: {
-      "Authorization": "Basic YWRtaW46ajR0ZTc3aHowNWxhcHl0aHNiMWc=",
-    }),
-  );
+  try {
+    final response = await dio.get(
+      "https://batchinfo.pharmconnect.com/batch/$batchCode",
+      options: Options(headers: {
+        "Authorization": "Basic YWRtaW46ajR0ZTc3aHowNWxhcHl0aHNiMWc=",
+      }),
+    );
 
-  if (response.statusCode == 200) {
-    if (response.data["data"] != null) {
-      final List<OCRResultModel> dataList = [];
-      OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
-      data.outputString = json.encode(response.data);
-      dataList.add(data);
-      return dataList;
+    if (response.statusCode == 200) {
+      if (response.data["data"] != null) {
+        final List<OCRResultModel> dataList = [];
+        OCRResultModel data = OCRResultModel.fromJson(response.data["data"]);
+        data.outputString = json.encode(response.data);
+        dataList.add(data);
+        return dataList;
+      }
+    }
+
+    return [OCRResultModel(outputString: json.encode(response.data))];
+  } on DioError catch (e) {
+    if (e.type == DioErrorType.connectionTimeout) {
+      return [
+        OCRResultModel(
+            outputString: json.encode({"message": "Connection Timeout "}))
+      ];
+    } else if (e.type == DioErrorType.receiveTimeout) {
+      return [
+        OCRResultModel(
+            outputString: json.encode({"message": "Receive Timeout"}))
+      ];
+    } else {
+      return [
+        OCRResultModel(outputString: json.encode({"message": "Network Error"}))
+      ];
     }
   }
-
-  return [OCRResultModel(outputString: json.encode(response.data))];
 }

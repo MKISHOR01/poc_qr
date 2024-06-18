@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:poc_qr/Qr_Scanner/batch_code_form.dart';
 import 'package:poc_qr/Qr_Scanner/product_listing.dart';
+import 'package:poc_qr/Qr_Scanner/table_view.dart';
 import 'package:poc_qr/models/ocr_result_model.dart';
 import 'package:poc_qr/services/apiServices.dart';
 import 'package:poc_qr/utils/app_theme.dart';
@@ -260,8 +261,10 @@ class _QRResultState extends State<QRResult> {
                                           ),
                                           result.isNotEmpty
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(10),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 20,
+                                                      vertical: 5),
                                                   child: Text(
                                                     "API Response",
                                                     style: TextStyle(
@@ -275,12 +278,11 @@ class _QRResultState extends State<QRResult> {
                                               ? Padding(
                                                   padding:
                                                       const EdgeInsets.all(10),
-                                                  child: Text(
-                                                      getjsonObjecDisplay(result[
-                                                                  0]
-                                                              .outputString ??
-                                                          "")),
-                                                )
+                                                  child: APIResponseTableView(
+                                                    data: json.decode(result[0]
+                                                            .outputString ??
+                                                        ""),
+                                                  ))
                                               : Container()
                                         ],
                                       )),
@@ -329,11 +331,15 @@ class _QRResultState extends State<QRResult> {
                                       )
                                     : Container(),
                                 result.isNotEmpty
-                                    ? Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Text(getjsonObjecDisplay(
-                                            result[0].outputString ?? "")),
+                                    ? APIResponseTableView(
+                                        data: json.decode(
+                                            result[0].outputString ?? ""),
                                       )
+                                    // Padding(
+                                    //     padding: const EdgeInsets.all(10),
+                                    //     child: Text(getjsonObjecDisplay(
+                                    //         result[0].outputString ?? "")),
+                                    //   )
                                     : Container()
                               ],
                             ),
