@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poc_qr/Qr_Scanner/ocr_landing.dart';
 import 'package:poc_qr/Qr_Scanner/qr_result.dart';
 import 'package:poc_qr/bottom_bar_view.dart';
 import 'package:poc_qr/dialogs/Image_Picker_dialog.dart';
@@ -28,9 +27,9 @@ class _LandingPageScreenState extends State<LandingPageScreen>
 
   @override
   void initState() {
-    tabIconsList.forEach((TabIconData tab) {
+    for (var tab in tabIconsList) {
       tab.isSelected = false;
-    });
+    }
     tabIconsList[0].isSelected = true;
 
     animationController = AnimationController(

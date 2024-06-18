@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:poc_qr/Qr_Scanner/batch_code_form.dart';
 import 'package:poc_qr/Qr_Scanner/product_listing.dart';
@@ -9,6 +7,7 @@ import 'package:poc_qr/models/ocr_result_model.dart';
 import 'package:poc_qr/services/apiServices.dart';
 import 'package:poc_qr/utils/app_theme.dart';
 
+// ignore: must_be_immutable
 class QRResult extends StatefulWidget {
   final Object? code;
   String? image;
@@ -182,7 +181,7 @@ class _QRResultState extends State<QRResult> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   const Flexible(
-                                                    flex: 3,
+                                                    flex: 4,
                                                     child: Text(
                                                       "Batch Code :",
                                                       style: TextStyle(
@@ -197,7 +196,7 @@ class _QRResultState extends State<QRResult> {
                                                     width: 10,
                                                   ),
                                                   Flexible(
-                                                    flex: 6,
+                                                    flex: 5,
                                                     child: Text(
                                                       reqValue.toUpperCase(),
                                                       style: const TextStyle(

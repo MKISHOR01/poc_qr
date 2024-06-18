@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:poc_qr/product_Listing.dart';
 import 'package:simple_barcode_scanner/enum.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 class SimbleQRscanner extends StatefulWidget {
-  const SimbleQRscanner({Key? key}) : super(key: key);
+  const SimbleQRscanner({super.key});
 
   @override
   State<SimbleQRscanner> createState() => _SimbleQRscannerState();

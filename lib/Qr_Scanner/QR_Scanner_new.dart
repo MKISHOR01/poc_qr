@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:poc_qr/Qr_Scanner/qr_result.dart';
@@ -43,7 +45,7 @@ class _QRScannerAndUploadState extends State<QRScannerAndUpload> {
                   },
                   icon: Icon(
                     Icons.flash_on,
-                    color: isFlashOn ? Color(0XFF1439BB) : Colors.black,
+                    color: isFlashOn ? const Color(0XFF1439BB) : Colors.black,
                   )),
               IconButton(
                   onPressed: () {
@@ -55,7 +57,8 @@ class _QRScannerAndUploadState extends State<QRScannerAndUpload> {
                   },
                   icon: Icon(
                     Icons.flip_camera_ios_outlined,
-                    color: isFrontCamera ? Color(0XFF1439BB) : Colors.black,
+                    color:
+                        isFrontCamera ? const Color(0XFF1439BB) : Colors.black,
                   ))
             ]),
         body: Container(
@@ -85,7 +88,7 @@ class _QRScannerAndUploadState extends State<QRScannerAndUpload> {
                           onDetect: (barcode) {
                             if (!isScannCompleted) {
                               isScannCompleted = true;
-                              final code = barcode.raw ?? null;
+                              final code = barcode.raw;
 
                               if (isFlashOn) {
                                 setState(() {
@@ -120,15 +123,13 @@ class _QRScannerAndUploadState extends State<QRScannerAndUpload> {
                   height: 20,
                 ),
                 Expanded(
-                    child: Container(
-                  child: InkWell(
-                      onTap: () async {
-                        final selection = await showImagePickerDialog(context,
-                            closeClick: () {});
-                        await handleMediaSelection(selection);
-                      },
-                      child: const Text("Upload / Capture file")),
-                )),
+                    child: InkWell(
+                        onTap: () async {
+                          final selection = await showImagePickerDialog(context,
+                              closeClick: () {});
+                          await handleMediaSelection(selection);
+                        },
+                        child: const Text("Upload / Capture file"))),
               ],
             )));
   }
@@ -143,6 +144,7 @@ class _QRScannerAndUploadState extends State<QRScannerAndUpload> {
         : await ImagePickerUtil.pickImageFromCamera();
 
     if (file != null) {
+      // ignore: use_build_context_synchronously
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return QRResult(
           image: file.path,

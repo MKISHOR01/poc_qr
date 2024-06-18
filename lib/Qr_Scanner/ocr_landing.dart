@@ -79,6 +79,7 @@ class _OCRLandingPageState extends State<OCRLandingPage> {
         : await ImagePickerUtil.pickImageFromCamera();
 
     if (file != null) {
+      // ignore: use_build_context_synchronously
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return QRResult(
           image: file.path,

@@ -29,9 +29,9 @@ class OCRResultModel {
       expiryDate: json["expiryDate"] ?? "",
       manufactureDate: json["manufactureDate"] ?? "",
       productName: json["productName"] ?? "",
-      productVariantId: json["productVariantId"].toString() ?? "",
+      productVariantId: json["productVariantId"].toString(),
       price: json["price"] ?? "",
-      packsize: json["packsize"].toString() ?? "",
+      packsize: json["packsize"].toString(),
       headDivisionCode: json["headDivisionCode"] ?? "",
       divisionCode: json["divisionCode)"] ?? "",
     );

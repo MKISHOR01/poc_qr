@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:poc_qr/Qr_Scanner/ocr_landing.dart';
 import 'package:poc_qr/view/landing_page.dart';
 
 void main() {
@@ -42,7 +41,7 @@ class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll('#', '');
     if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
+      hexColor = 'FF$hexColor';
     }
     return int.parse(hexColor, radix: 16);
   }

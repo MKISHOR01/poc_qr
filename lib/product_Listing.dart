@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProductListingOld extends StatefulWidget {
   final String searchText;
@@ -119,11 +119,11 @@ class _ProductListingOldState extends State<ProductListingOld> {
                       ]),
                   Row(
                     children: [
-                      Flexible(
+                      const Flexible(
                         flex: 6,
-                        child: Container(
+                        child: SizedBox(
                           height: 50,
-                          child: const TextField(
+                          child: TextField(
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 enabledBorder: OutlineInputBorder(),

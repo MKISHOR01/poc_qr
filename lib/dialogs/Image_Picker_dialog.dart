@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 Future showImagePickerDialog(
@@ -56,7 +58,7 @@ class ImagePickerDialog extends StatelessWidget {
                         height: 61,
                         child: Center(
                           child: Text("Photo Gallery",
-                              style: const TextStyle(color: Color(0xFF007AFF))),
+                              style: TextStyle(color: Color(0xFF007AFF))),
                         ),
                       ),
                     ),

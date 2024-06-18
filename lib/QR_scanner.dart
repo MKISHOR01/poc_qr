@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 
@@ -13,7 +15,6 @@ class _QrScannerState extends State<QrScanner> {
   String? code;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
