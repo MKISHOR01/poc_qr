@@ -52,6 +52,8 @@ class _ProductListingState extends State<ProductListing> {
             padding: const EdgeInsets.only(
                 left: 15.0, right: 15.0, top: 15.0, bottom: 15.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,65 +202,74 @@ class _ProductListingState extends State<ProductListing> {
                   height: 5,
                 ),
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Wrap(
+                        spacing: 5.0,
+                        runSpacing: 5.0,
                         children: [
                           const Text(
                             "Mfo. Dt :",
                             style: TextStyle(
-                                fontFamily: AppTheme.fontName,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                letterSpacing: 0.0,
-                                color: Colors.black),
-                          ),
-                          const SizedBox(
-                            width: 10,
+                              fontFamily: AppTheme.fontName,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              letterSpacing: 0.0,
+                              color: Colors.black,
+                            ),
                           ),
                           Text(
-                              result.manufactureDate!.isNotEmpty
-                                  ? converDateTime(result.manufactureDate!)
-                                  : "-",
-                              style: const TextStyle(
-                                  fontFamily: AppTheme.fontName,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 14,
-                                  color: Color.fromARGB(255, 36, 91, 65),
-                                  letterSpacing: 0.0)),
+                            result.manufactureDate!.isNotEmpty
+                                ? converDateTime(result.manufactureDate!)
+                                : "-",
+                            style: const TextStyle(
+                              fontFamily: AppTheme.fontName,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 14,
+                              color: Color.fromARGB(255, 36, 91, 65),
+                              letterSpacing: 0.0,
+                            ),
+                          ),
                         ],
                       ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Exp Dt :",
-                              style: TextStyle(
-                                  fontFamily: AppTheme.fontName,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  letterSpacing: 0.0,
-                                  color: Colors.black),
+                    ),
+                    Expanded(
+                      child: Wrap(
+                        spacing: 5.0,
+                        runSpacing: 5.0,
+                        alignment: WrapAlignment.end,
+                        children: [
+                          const Text(
+                            "Exp Dt :",
+                            style: TextStyle(
+                              fontFamily: AppTheme.fontName,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              letterSpacing: 0.0,
+                              color: Colors.black,
                             ),
-                            const SizedBox(
-                              width: 10,
+                          ),
+                          Text(
+                            result.expiryDate!.isNotEmpty
+                                ? converDateTime(result.expiryDate!)
+                                : "-",
+                            style: const TextStyle(
+                              fontFamily: AppTheme.fontName,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 14,
+                              color: Colors.red,
+                              letterSpacing: 0.0,
                             ),
-                            Text(
-                                result.expiryDate!.isNotEmpty
-                                    ? converDateTime(result.expiryDate!)
-                                    : "-",
-                                style: const TextStyle(
-                                    fontFamily: AppTheme.fontName,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 14,
-                                    color: Colors.red,
-                                    letterSpacing: 0.0)),
-                          ]),
-                    ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

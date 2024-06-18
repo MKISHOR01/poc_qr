@@ -21,12 +21,33 @@ Future<List<OCRResultModel>> imageOCRApiCall(
   });
 
   final response = await dio.post(
-    "https://newuat.pharmconnect.com/scan_product",
+    "https://scanner.pharmconnect.com/scan_product",
     options: Options(headers: {
       "Authorization": basicAuth,
       "Content-Type": "multipart/form-data",
     }),
     data: formData,
+  );
+
+  if (response.statusCode == 200) {
+    if (response.data["data"] != null) {
+      final List<OCRResultModel> dataList = [];
+      dataList.add(OCRResultModel.fromJson(response.data["data"]));
+      return dataList;
+    }
+  }
+
+  return [];
+}
+
+Future<List<OCRResultModel>> batchCodeApiCall(String batchCode) async {
+  final dio = Dio();
+
+  final response = await dio.get(
+    "https://batchinfo.pharmconnect.com/batch/$batchCode",
+    options: Options(headers: {
+      "Authorization": "Basic YWRtaW46ajR0ZTc3aHowNWxhcHl0aHNiMWc=",
+    }),
   );
 
   if (response.statusCode == 200) {
