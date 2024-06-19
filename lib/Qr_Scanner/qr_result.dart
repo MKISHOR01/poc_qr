@@ -8,6 +8,7 @@ import 'package:poc_qr/Qr_Scanner/table_view.dart';
 import 'package:poc_qr/models/ocr_result_model.dart';
 import 'package:poc_qr/services/apiServices.dart';
 import 'package:poc_qr/utils/app_theme.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 // ignore: must_be_immutable
 class QRResult extends StatefulWidget {
@@ -143,16 +144,20 @@ class _QRResultState extends State<QRResult> {
                                                 height: 10,
                                               ),
                                               ClipRRect(
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(10),
-                                                  ),
-                                                  child: Image.file(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(10),
+                                                ),
+                                                child: WidgetZoom(
+                                                  heroAnimationTag: 'tag',
+                                                  zoomWidget: Image.file(
                                                     File(widget.image!),
                                                     width: double.infinity,
                                                     fit: BoxFit.cover,
                                                     height: 180,
-                                                  )),
+                                                  ),
+                                                ),
+                                              ),
                                             ],
                                           ))
                                       : type == "batchCode"

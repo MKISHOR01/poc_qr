@@ -46,6 +46,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
   get_it: ^7.7.0
   logman: ^0.0.17
+  widget_zoom: ^0.0.4
   
 
 dev_dependencies:
