@@ -408,6 +408,7 @@ List<TableRow> _buildTableRows(Map<String, dynamic> data) {
   }
 
   if (data!["ocr_output"] != null) {
+    String value = data!["ocr_output"].toString().replaceAll("\n", " ");
     rows.add(TableRow(children: [
       TableCell(
         child: Container(
@@ -423,7 +424,7 @@ List<TableRow> _buildTableRows(Map<String, dynamic> data) {
         child: Container(
           padding: EdgeInsets.all(8.0),
           alignment: Alignment.center,
-          child: Text(data!["ocr_output"].toString()),
+          child: Text(value),
         ),
       ),
     ]));
