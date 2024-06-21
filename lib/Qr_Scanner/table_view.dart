@@ -258,7 +258,7 @@ class _APIResponseTableViewState extends State<APIResponseTableView> {
                           ]),
                         ],
                       )
-                    : Container()
+                    : Container(),
               ],
             ),
           )
@@ -402,6 +402,28 @@ List<TableRow> _buildTableRows(Map<String, dynamic> data) {
           padding: EdgeInsets.all(8.0),
           alignment: Alignment.center,
           child: Text(data!["message"].toString()),
+        ),
+      ),
+    ]));
+  }
+
+  if (data!["ocr_output"] != null) {
+    rows.add(TableRow(children: [
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'ocr_output',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.center,
+          child: Text(data!["ocr_output"].toString()),
         ),
       ),
     ]));

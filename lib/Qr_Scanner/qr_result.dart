@@ -290,14 +290,18 @@ class _QRResultState extends State<QRResult> {
                                                             .outputString ??
                                                         ""),
                                                   ))
-                                              : Container()
+                                              : Container(),
                                         ],
                                       )),
+                                  SizedBox(
+                                    height: 30,
+                                  )
                                 ],
                               ),
                             ),
                           )
-                        : Center(
+                        : SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -347,7 +351,10 @@ class _QRResultState extends State<QRResult> {
                                     //     child: Text(getjsonObjecDisplay(
                                     //         result[0].outputString ?? "")),
                                     //   )
-                                    : Container()
+                                    : Container(),
+                                SizedBox(
+                                  height: 100,
+                                )
                               ],
                             ),
                           );
