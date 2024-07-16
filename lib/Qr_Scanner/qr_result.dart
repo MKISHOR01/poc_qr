@@ -308,7 +308,7 @@ class _QRResultState extends State<QRResult> {
                               children: [
                                 const Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 20.0, vertical: 0),
+                                      horizontal: 20.0, vertical: 10),
                                   child: Text(
                                     "Unable to Find the details please try again / Enter the Batch Code to find the details",
                                     style: TextStyle(

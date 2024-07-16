@@ -407,6 +407,50 @@ List<TableRow> _buildTableRows(Map<String, dynamic> data) {
     ]));
   }
 
+  if (data!["accuracy"] != null) {
+    rows.add(TableRow(children: [
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'accuracy',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.center,
+          child: Text(data!["accuracy"].toString()),
+        ),
+      ),
+    ]));
+  }
+
+  if (data!["batch_number"] != null) {
+    rows.add(TableRow(children: [
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'BatchNumber',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.center,
+          child: Text(data!["batch_number"].toString()),
+        ),
+      ),
+    ]));
+  }
+
   if (data!["ocr_output"] != null) {
     String value = data!["ocr_output"].toString().replaceAll("\n", " ");
     rows.add(TableRow(children: [
