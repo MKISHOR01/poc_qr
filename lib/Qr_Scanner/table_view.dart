@@ -45,218 +45,8 @@ class _APIResponseTableViewState extends State<APIResponseTableView> {
                   height: 10,
                 ),
                 widget.data!["data"] != null
-                    ? Table(
-                        border: TableBorder.all(color: Colors.black),
-                        columnWidths: {
-                          0: FlexColumnWidth(2),
-                          1: FlexColumnWidth(3),
-                        },
-                        children: [
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'workspaceId',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]["workspaceId"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'batchCode',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]["batchCode"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'expiryDate',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(converDateTime(widget.data!["data"]
-                                        ["expiryDate"]
-                                    .toString())),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'manufactureDate',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(converDateTime(widget.data!["data"]
-                                        ["manufactureDate"]
-                                    .toString())),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'productName',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]["productName"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'productVariantId',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]
-                                        ["productVariantId"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'price',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(
-                                    widget.data!["data"]["price"].toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'packsize',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]["packsize"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'headDivisionCode',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]
-                                        ["headDivisionCode"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                          TableRow(children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'divisionCode',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                alignment: Alignment.center,
-                                child: Text(widget.data!["data"]["divisionCode"]
-                                    .toString()),
-                              ),
-                            ),
-                          ]),
-                        ],
+                    ? Column(
+                        children: _buildProductsTableRows(widget.data!["data"]),
                       )
                     : Container(),
               ],
@@ -273,6 +63,214 @@ converDateTime(String isoString) {
   String formattedDate =
       DateFormat("dd-MMM-yyyy").format(dateTime).toUpperCase();
   return formattedDate;
+}
+
+_buildProductsTableRows(List<dynamic> productList) {
+  return productList.map((data) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Table(
+        border: TableBorder.all(color: Colors.black),
+        columnWidths: {
+          0: FlexColumnWidth(2),
+          1: FlexColumnWidth(3),
+        },
+        children: [
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'workspaceId',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["workspaceId"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'batchCode',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["batchCode"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'expiryDate',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(converDateTime(data!["expiryDate"].toString())),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'manufactureDate',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child:
+                    Text(converDateTime(data!["manufactureDate"].toString())),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'productName',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["productName"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'productVariantId',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["productVariantId"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'price',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["price"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'packsize',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["packsize"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'headDivisionCode',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["headDivisionCode"].toString()),
+              ),
+            ),
+          ]),
+          TableRow(children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'divisionCode',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: Text(data!["divisionCode"].toString()),
+              ),
+            ),
+          ]),
+        ],
+      ),
+    );
+  }).toList();
 }
 
 List<TableRow> _buildTableRows(Map<String, dynamic> data) {
@@ -474,5 +472,27 @@ List<TableRow> _buildTableRows(Map<String, dynamic> data) {
     ]));
   }
 
+  if (data!["failedData"] != null) {
+    String value = data!["failedData"].toString().replaceAll("[", " ");
+    rows.add(TableRow(children: [
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Failed Batch Number',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      TableCell(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          alignment: Alignment.center,
+          child: Text(value),
+        ),
+      ),
+    ]));
+  }
   return rows;
 }

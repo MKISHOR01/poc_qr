@@ -1,4 +1,18 @@
 class OCRResultModel {
+  final List<OCRDataList> products;
+  String? outputString;
+
+  OCRResultModel({required this.products, this.outputString});
+
+  factory OCRResultModel.fromJson(List<Map<String, dynamic>> products) {
+    return OCRResultModel(
+      products: products.map((data) => OCRDataList.fromJson(data)).toList(),
+      outputString: "",
+    );
+  }
+}
+
+class OCRDataList {
   final String? workspaceId;
   final String? batchCode;
   final String? expiryDate;
@@ -11,7 +25,7 @@ class OCRResultModel {
   final String? divisionCode;
   String? outputString;
 
-  OCRResultModel(
+  OCRDataList(
       {this.workspaceId,
       this.batchCode,
       this.expiryDate,
@@ -24,8 +38,8 @@ class OCRResultModel {
       this.outputString,
       this.divisionCode});
 
-  factory OCRResultModel.fromJson(Map<String, dynamic> json) {
-    return OCRResultModel(
+  factory OCRDataList.fromJson(Map<String, dynamic> json) {
+    return OCRDataList(
       workspaceId: json["workspaceId"] ?? "",
       batchCode: json["batchCode"] ?? "",
       expiryDate: json["expiryDate"] ?? "",
@@ -36,7 +50,6 @@ class OCRResultModel {
       packsize: json["packsize"].toString(),
       headDivisionCode: json["headDivisionCode"] ?? "",
       divisionCode: json["divisionCode)"] ?? "",
-      outputString: "Null",
     );
   }
 }

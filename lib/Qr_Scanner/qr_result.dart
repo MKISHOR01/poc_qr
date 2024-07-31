@@ -33,7 +33,7 @@ class _QRResultState extends State<QRResult> {
   String type = "";
   String reqValue = "";
 
-  Future<List<OCRResultModel>> apiCall() async {
+  Future<OCRResultModel> apiCall() async {
     if (type == "image") {
       final data = imageOCRApiCall(reqValue, "image");
       return data;
@@ -42,7 +42,7 @@ class _QRResultState extends State<QRResult> {
       return data;
     }
 
-    return [];
+    return OCRResultModel(products: [], outputString: "");
   }
 
   @override
@@ -92,11 +92,10 @@ class _QRResultState extends State<QRResult> {
               )
             : FutureBuilder(
                 future: apiCall(),
-                builder:
-                    (context, AsyncSnapshot<List<OCRResultModel>> snapshot) {
+                builder: (context, AsyncSnapshot<OCRResultModel> snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    List<OCRResultModel> result = snapshot.requireData;
-                    return result[0].productName != null
+                    OCRResultModel result = snapshot.requireData;
+                    return result.products.length > 0
                         ? SingleChildScrollView(
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -245,7 +244,7 @@ class _QRResultState extends State<QRResult> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          result[0].productName != null
+                                          result.products.length > 0 != null
                                               ? const Text(
                                                   "Product Suggestions",
                                                   style: TextStyle(
@@ -258,13 +257,14 @@ class _QRResultState extends State<QRResult> {
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          result[0].productName != null
-                                              ? ProductListing(products: result)
+                                          result.products.length > 0 != null
+                                              ? ProductListing(
+                                                  products: result.products)
                                               : Container(),
                                           const SizedBox(
                                             height: 20,
                                           ),
-                                          result.isNotEmpty
+                                          result.products.length > 0
                                               ? Padding(
                                                   padding: const EdgeInsets
                                                       .symmetric(
@@ -279,16 +279,16 @@ class _QRResultState extends State<QRResult> {
                                                   ),
                                                 )
                                               : Container(),
-                                          result.isNotEmpty
+                                          result.outputString != ""
                                               ? Padding(
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       horizontal: 2.0,
                                                       vertical: 5.0),
                                                   child: APIResponseTableView(
-                                                    data: json.decode(result[0]
-                                                            .outputString ??
-                                                        ""),
+                                                    data: json.decode(
+                                                        result.outputString ??
+                                                            ""),
                                                   ))
                                               : Container(),
                                         ],
@@ -330,7 +330,8 @@ class _QRResultState extends State<QRResult> {
                                     });
                                   },
                                 ),
-                                result.isNotEmpty
+                                result.products.length > 0 ||
+                                        result.outputString != ""
                                     ? Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Text(
@@ -341,10 +342,10 @@ class _QRResultState extends State<QRResult> {
                                         ),
                                       )
                                     : Container(),
-                                result.isNotEmpty
+                                result.outputString != ""
                                     ? APIResponseTableView(
-                                        data: json.decode(
-                                            result[0].outputString ?? ""),
+                                        data: json
+                                            .decode(result.outputString ?? ""),
                                       )
                                     // Padding(
                                     //     padding: const EdgeInsets.all(10),
